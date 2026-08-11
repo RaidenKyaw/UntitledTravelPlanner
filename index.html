@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan together. Travel for less.</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Gaegu:wght@400;700&family=Cinzel:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="logo">LOGO TBD</span>
+      <span class="v-bar"></span>
+      <a class="how-link" href="#">How it works</a>
+    </div>
+    <div class="header-right">
+      <a class="btn btn-ghost" href="#">Login</a>
+      <a class="btn btn-fill" href="#">Start a trip</a>
+    </div>
+  </header>
+
+  <main class="hero">
+    <section class="hero-copy">
+      <h1>Plan together.<br />Travel for less.</h1>
+      <p>Organise your group trip in one place and know when prices drop across flights, stays and activities.</p>
+      <a class="btn btn-cta" href="#">Start or join a trip <span class="arrow">&#8594;</span></a>
+      <span class="fine-print">Free - No card required</span>
+    </section>
+
+    <section class="hero-art" aria-hidden="true">
+      <div class="plane-wrap">
+        <div class="trail">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <img class="plane" src="assets/plane.png" alt="" />
+      </div>
+      <img class="friends" src="assets/friends.png" alt="" />
+      <img class="cloud cloud-left" src="assets/cloud-1.png" alt="" />
+      <img class="cloud cloud-right" src="assets/cloud-3.png" alt="" />
+      <img class="cloud cloud-mid" src="assets/cloud-2.png" alt="" />
+
+      <div class="price-notes">
+        <span class="note">SYD &#8594; Tokyo&nbsp;&nbsp;A$486 &#8595;</span>
+        <span class="note">Bali stay&nbsp;&nbsp;A$312 &#8595;</span>
+        <span class="note">Tokyo food tour&nbsp;&nbsp;A$64 &#8595;</span>
+      </div>
+    </section>
+  </main>
+
+  <section class="explore">
+    <div class="explore-band">
+      <h2 class="explore-title">See what's dropping</h2>
+      <p class="explore-sub">Recent price drops across flights, stays and things to do.</p>
+      <div id="shelves"></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
