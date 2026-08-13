@@ -344,7 +344,7 @@ body {
 .price-notes {
   position: absolute;
   left: 50%;
-  top: calc(48.5% + min(19.5vw, 284px));
+  top: calc(48.5% + min(17.8vw, 258px));
   transform: translateX(-50%);
   height: 44px;
   display: grid;
@@ -524,7 +524,7 @@ body {
   }
 
   .price-notes {
-    top: calc(48.5% + 40vw);
+    top: calc(48.5% + 37vw);
   }
 
   .note {
