@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--ink);
   min-height: 100%;
@@ -64,7 +64,7 @@ body {
 }
 
 .logo {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 17px;
   letter-spacing: 0.02em;
 }
@@ -145,7 +145,7 @@ body {
 
 .hero-copy h1 {
   font-size: clamp(46px, 5.8vw, 90px);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.14;
   letter-spacing: -0.022em;
 }
@@ -553,7 +553,7 @@ body {
 
 .explore-title {
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 5px;
 }
 
@@ -579,8 +579,8 @@ body {
 }
 
 .shelf h3 {
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 21px;
+  font-weight: 600;
   margin: 0 0 0 20px;
 }
 
