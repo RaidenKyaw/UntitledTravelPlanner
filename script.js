@@ -23,6 +23,24 @@ function cycle() {
 
 if (notes.length) setTimeout(cycle, 800);
 
+/* ---------- header: hide on scroll down, reveal on scroll up ---------- */
+
+const header = document.querySelector(".site-header");
+let lastY = window.scrollY;
+let headerTick = false;
+window.addEventListener("scroll", () => {
+  if (headerTick) return;
+  headerTick = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY;
+    if (y <= 80) header.classList.remove("hidden");
+    else if (y > lastY + 4) header.classList.add("hidden");
+    else if (y < lastY - 4) header.classList.remove("hidden");
+    lastY = y;
+    headerTick = false;
+  });
+}, { passive: true });
+
 /* ---------- explore shelves ---------- */
 
 const SHELVES = [

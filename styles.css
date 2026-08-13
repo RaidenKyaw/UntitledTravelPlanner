@@ -17,24 +17,44 @@ body {
   height: 100%;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Inter", sans-serif;
   background: var(--bg);
   color: var(--ink);
   min-height: 100%;
-  overflow-x: hidden;
 }
 
 /* ---------- header ---------- */
 
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 76px;
-  margin: 0 44px;
-  padding: 0 6px;
-  border-bottom: 1px solid var(--line);
+  padding: 0 50px;
+  background: var(--bg);
+  transition: transform 0.35s ease;
+}
+
+.site-header.hidden {
+  transform: translateY(-102%);
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 44px;
+  right: 44px;
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
 }
 
 .header-left {
@@ -180,7 +200,7 @@ body {
 .friends {
   position: absolute;
   left: 50%;
-  top: 52%;
+  top: 48.5%;
   transform: translate(-50%, -50%);
   width: min(46vw, 680px);
 }
@@ -192,21 +212,21 @@ body {
 .cloud-left {
   width: min(14vw, 215px);
   left: 15%;
-  top: 16%;
+  top: 13.5%;
   animation: drift 14s ease-in-out infinite alternate;
 }
 
 .cloud-right {
   width: min(11.5vw, 175px);
   right: 1%;
-  top: 25%;
+  top: 22%;
   animation: drift 17s ease-in-out infinite alternate-reverse;
 }
 
 .cloud-mid {
   width: min(10vw, 155px);
   right: 5%;
-  top: 11%;
+  top: 9%;
   animation: drift 15s ease-in-out infinite alternate;
 }
 
@@ -222,7 +242,7 @@ body {
 .plane-wrap {
   position: absolute;
   right: 3%;
-  top: 10%;
+  top: 7.5%;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -324,7 +344,7 @@ body {
 .price-notes {
   position: absolute;
   left: 50%;
-  top: calc(52% + min(19.5vw, 284px));
+  top: calc(48.5% + min(19.5vw, 284px));
   transform: translateX(-50%);
   height: 44px;
   display: grid;
@@ -388,8 +408,12 @@ body {
   }
 
   .site-header {
-    margin: 0 16px;
-    padding: 0 4px;
+    padding: 0 20px;
+  }
+
+  .site-header::after {
+    left: 16px;
+    right: 16px;
   }
 
   .header-left {
@@ -500,7 +524,7 @@ body {
   }
 
   .price-notes {
-    top: calc(52% + 40vw);
+    top: calc(48.5% + 40vw);
   }
 
   .note {
