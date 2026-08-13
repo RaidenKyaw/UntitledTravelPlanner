@@ -233,3 +233,118 @@ const shelvesRoot = document.getElementById("shelves");
 if (shelvesRoot) {
   SHELVES.forEach((shelf, i) => shelvesRoot.appendChild(buildShelf(shelf, i)));
 }
+
+/* ---------- how it works: scroll-driven step wheel ---------- */
+
+const howSection = document.querySelector(".how-section");
+if (howSection) {
+  const howSteps = Array.from(howSection.querySelectorAll(".step"));
+  const howDots = Array.from(howSection.querySelectorAll(".dot"));
+  const howBlob = howSection.querySelector(".how-blob");
+  const BLOB_STATES = [
+    { bg: "#cdeab3", br: "61% 39% 52% 48% / 44% 59% 41% 56%", rot: 0, sc: 1, x: 0, y: 0 },
+    { bg: "#daf0bd", br: "73% 27% 38% 62% / 51% 74% 26% 49%", rot: 38, sc: 1, x: -30, y: 25 },
+    { bg: "#bfe3d2", br: "29% 71% 64% 36% / 57% 33% 67% 43%", rot: -32, sc: 1.03, x: 35, y: -25 },
+    { bg: "#f0ead2", br: "67% 33% 26% 74% / 39% 62% 38% 61%", rot: 55, sc: 0.98, x: -25, y: -30 },
+    { bg: "#bfe4b0", br: "34% 66% 43% 57% / 71% 29% 71% 29%", rot: -50, sc: 1.02, x: 28, y: 30 },
+  ];
+  let howLastActive = -1;
+  let howRaf = 0;
+
+  function howUpdate() {
+    const vh = window.innerHeight;
+    const rect = howSection.getBoundingClientRect();
+    const total = howSection.offsetHeight - vh;
+    const progress = Math.min(1, Math.max(0, -rect.top / total));
+    const n = howSteps.length;
+    const staticMode =
+      window.innerWidth < 760 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const raw = progress * (n - 1);
+    const base = Math.floor(raw);
+    const frac = raw - base;
+    let e = 0;
+    if (frac >= 0.85) e = 1;
+    else if (frac > 0.15) {
+      const t = (frac - 0.15) / 0.7;
+      e = t * t * (3 - 2 * t);
+    }
+    const pos = Math.min(base + e, n - 1);
+
+    if (staticMode) {
+      if (howBlob) howBlob.style.background = BLOB_STATES[0].bg;
+      return;
+    }
+
+    howSteps.forEach((el, i) => {
+      const d = i - pos;
+      const ad = Math.abs(d);
+      const y = d * 150 * (1 + Math.min(ad, 2) * 0.15);
+      const scale = Math.min(1, Math.max(0.6, 1.05 - ad * 0.25));
+      let opacity = ad < 0.1 ? 1 : Math.max(0.62, 1 - ad * 0.24);
+      const yAbs = Math.abs(y);
+      if (yAbs > 195) opacity *= Math.max(0, 1 - (yAbs - 195) / 65);
+      el.style.transform = "translateY(calc(-50% + " + y + "px)) scale(" + scale + ")";
+      el.style.opacity = opacity.toFixed(3);
+      const title = el.querySelector(".step-title");
+      if (title) {
+        const t = Math.max(0, 1 - ad);
+        const mix = (a, b) => Math.round(a + (b - a) * t);
+        title.style.color = "rgb(" + mix(107, 23) + ", " + mix(122, 33) + ", " + mix(92, 15) + ")";
+      }
+      el.style.pointerEvents = ad < 0.5 ? "auto" : "none";
+    });
+
+    const active = Math.round(pos);
+    if (active !== howLastActive) {
+      const first = howLastActive === -1;
+      howLastActive = active;
+      if (!first) {
+        const tick = howSteps[active] && howSteps[active].querySelector(".step-inner");
+        if (tick)
+          tick.animate(
+            [
+              { transform: "scale(0.96)" },
+              { transform: "scale(1.045)", offset: 0.55 },
+              { transform: "scale(1)" },
+            ],
+            { duration: 280, easing: "cubic-bezier(0.34, 1.56, 0.64, 1)" }
+          );
+      }
+      const s = BLOB_STATES[active];
+      if (howBlob && s) {
+        howBlob.style.background = s.bg;
+        howBlob.style.borderRadius = s.br;
+        howBlob.style.transform =
+          "translate(" + s.x + "px, " + s.y + "px) rotate(" + s.rot + "deg) scale(" + s.sc + ")";
+      }
+    }
+
+    howDots.forEach((dot, i) => {
+      const on = i === active;
+      dot.style.background = on ? "#3a3a3a" : "#c2c9b8";
+      dot.style.transform = on ? "scale(1.3)" : "scale(1)";
+    });
+  }
+
+  function howGoTo(i) {
+    const vh = window.innerHeight;
+    const total = howSection.offsetHeight - vh;
+    const top = howSection.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: top + (i / (howSteps.length - 1)) * total,
+      behavior: "smooth",
+    });
+  }
+
+  howDots.forEach((dot, i) => dot.addEventListener("click", () => howGoTo(i)));
+  window.addEventListener("scroll", () => {
+    if (howRaf) return;
+    howRaf = requestAnimationFrame(() => {
+      howRaf = 0;
+      howUpdate();
+    });
+  }, { passive: true });
+  window.addEventListener("resize", howUpdate);
+  setTimeout(howUpdate, 60);
+}

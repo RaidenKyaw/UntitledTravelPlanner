@@ -8,14 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Cinzel:wght@500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
   <header class="site-header">
     <div class="header-left">
       <span class="logo">LOGO TBD</span>
       <span class="v-bar"></span>
-      <a class="how-link" href="#">How it works</a>
+      <a class="how-link" href="#how">How it works</a>
     </div>
     <div class="header-right">
       <a class="btn btn-ghost" href="#">Login</a>
@@ -54,6 +54,73 @@
     </section>
   </main>
 
+  <section class="how-section" id="how">
+    <div class="how-sticky">
+      <h2>Here’s how it works</h2>
+      <div class="how-grid">
+        <div class="how-wheelcol">
+          <div class="how-wheel">
+            <div class="step" data-step="0">
+              <div class="step-inner">
+                <div class="step-title">01 Start a trip and invite your group</div>
+                <div class="step-body">Drop one link in the group chat and everyone’s in.</div>
+              </div>
+            </div>
+            <div class="step" data-step="1">
+              <div class="step-inner">
+                <div class="step-title">02 Everyone adds their dates and airport</div>
+                <div class="step-body">Mark when you’re free on the shared calendar and where you’d fly from.</div>
+              </div>
+            </div>
+            <div class="step" data-step="2">
+              <div class="step-inner">
+                <div class="step-title">03 We hunt for big fare drops</div>
+                <div class="step-body">When flights that fit everyone’s dates hit half price or better, the whole group gets the alert.</div>
+              </div>
+            </div>
+            <div class="step" data-step="3">
+              <div class="step-inner">
+                <div class="step-title">04 Book while it’s cheap</div>
+                <div class="step-body">Everyone grabs their flight, and just like that, the destination’s locked.</div>
+              </div>
+            </div>
+            <div class="step" data-step="4">
+              <div class="step-inner">
+                <div class="step-title">05 We sort the rest</div>
+                <div class="step-body">Flights booked? We find discounted stays and things to do for your dates. Pack and go.</div>
+                <div class="step-cta">
+                  <a class="how-cta-btn" href="#">Start your trip</a>
+                  <div class="how-cta-note">Free · No card · 2 minutes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="how-laptopcol">
+          <div class="how-blob"></div>
+          <div class="how-laptop">
+            <div class="laptop-lid"><div class="laptop-screen"></div></div>
+            <div class="laptop-base"></div>
+          </div>
+        </div>
+        <div class="how-dots">
+          <button type="button" class="dot" data-dot="0" aria-label="Step 1"></button>
+          <button type="button" class="dot" data-dot="1" aria-label="Step 2"></button>
+          <button type="button" class="dot" data-dot="2" aria-label="Step 3"></button>
+          <button type="button" class="dot" data-dot="3" aria-label="Step 4"></button>
+          <button type="button" class="dot" data-dot="4" aria-label="Step 5"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-final">
+    <div class="how-final-title">Ready when your group is.</div>
+    <a class="how-cta-btn how-cta-big" href="#">Start your trip →</a>
+    <div class="how-cta-note">Free · No card · 2 minutes</div>
+    <a class="how-watch-link" href="#">Not planning yet? Just watch a route</a>
+  </section>
+
   <section class="explore">
     <div class="explore-band">
       <h2 class="explore-title">See what's dropping</h2>
@@ -62,6 +129,6 @@
     </div>
   </section>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
