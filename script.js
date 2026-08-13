@@ -204,7 +204,8 @@ function buildShelf(shelf, index) {
   requestAnimationFrame(() => {
     const card = track.querySelector(".card");
     const w = setWidth();
-    if (card && w) carousel.scrollLeft = w + Math.round(card.offsetWidth * 0.6);
+    const startFactor = [0.6, 1.35, 2.15][index % 3];
+    if (card && w) carousel.scrollLeft = w + Math.round(card.offsetWidth * startFactor);
   });
 
   return el;
