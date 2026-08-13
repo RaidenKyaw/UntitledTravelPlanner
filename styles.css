@@ -548,7 +548,7 @@ body {
 
 .explore-band {
   margin: 0 44px;
-  padding: 14px 6px 24px;
+  padding: 30px 6px 24px;
 }
 
 .explore-title {
@@ -924,7 +924,7 @@ html {
 /* ---------- ready-when CTA ---------- */
 
 .how-final {
-  padding: 84px 24px 96px;
+  padding: 64px 24px 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
